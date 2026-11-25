@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ทำแบบสำรวจ | 24 HOURS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="app-bg">
+  <header class="topbar"><a class="brand" href="../index.html"><span class="brand-mark">24</span><span>HOURS<span class="brand-sub">TIME MANAGEMENT</span></span></a><span class="step-label" id="stepLabel">ส่วนที่ 1 จาก 3</span></header>
+  <main class="form-shell">
+    <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+    <form id="surveyForm" novalidate>
+      <section class="survey-step active" data-step="0">
+        <div class="section-kicker">01 / DAILY ROUTINE</div><h1>เริ่มจากชีวิตประจำวัน</h1><p class="muted">ข้อมูลทั่วไปที่ไม่ระบุตัวตน</p>
+        <label class="field-label" for="grade">ระดับชั้น</label>
+        <select id="grade" required><option value="">เลือกระดับชั้น</option><option>ม.1</option><option>ม.2</option><option>ม.3</option><option>ม.4</option><option>ม.5</option><option>ม.6</option><option>อื่น ๆ</option></select>
+        <label class="field-label" for="mainActivity">กิจกรรมที่ใช้เวลามากที่สุดในแต่ละวัน</label>
+        <select id="mainActivity" required><option value="">เลือกกิจกรรม</option><option>เรียน / ทำการบ้าน</option><option>ใช้โทรศัพท์ / โซเชียลมีเดีย</option><option>เล่นเกม</option><option>พักผ่อน / นอน</option><option>ทำงานบ้าน / ช่วยครอบครัว</option><option>กิจกรรมอื่น ๆ</option></select>
+        <div class="two-col">
+          <div><label class="field-label" for="sleepHours">นอนเฉลี่ยกี่ชั่วโมงต่อวัน</label><input id="sleepHours" type="number" min="0" max="24" step="0.5" placeholder="เช่น 8" required></div>
+          <div><label class="field-label" for="studyHours">เรียน/ทำการบ้านกี่ชั่วโมงต่อวัน</label><input id="studyHours" type="number" min="0" max="24" step="0.5" placeholder="เช่น 6" required></div>
+        </div>
+        <label class="field-label" for="phoneHours">ใช้โทรศัพท์/โซเชียลมีเดียกี่ชั่วโมงต่อวัน</label><input id="phoneHours" type="number" min="0" max="24" step="0.5" placeholder="เช่น 3" required>
+        <label class="field-label" for="gameHours">เล่นเกมกี่ชั่วโมงต่อวัน</label><input id="gameHours" type="number" min="0" max="24" step="0.5" placeholder="เช่น 1" required>
+        <div class="notice">ตอบตามเวลาเฉลี่ยในวันปกติ ไม่จำเป็นต้องเป็นตัวเลขที่แน่นอน</div>
+      </section>
+      <section class="survey-step" data-step="1">
+        <div class="section-kicker">02 / TIME MANAGEMENT</div><h1>คุณจัดการเวลาอย่างไร?</h1><p class="muted">เลือกระดับที่ตรงกับพฤติกรรมของคุณมากที่สุด</p>
+        <div id="likertQuestions"></div>
+        <label class="field-label" for="obstacle">สิ่งที่เป็นอุปสรรคต่อการจัดการเวลามากที่สุด</label>
+        <select id="obstacle" required><option value="">เลือกคำตอบ</option><option>เล่นโทรศัพท์ / โซเชียลมีเดีย</option><option>เล่นเกม / ความบันเทิง</option><option>งานหรือการบ้านมีจำนวนมาก</option><option>ไม่มีการวางแผนล่วงหน้า</option><option>เหนื่อยล้า / พักผ่อนไม่เพียงพอ</option><option>อื่น ๆ</option></select>
+        <label class="field-label" for="strategy">วิธีที่ช่วยให้คุณจัดการเวลาได้ดีขึ้น (ถ้ามี)</label><textarea id="strategy" rows="3" maxlength="500" placeholder="พิมพ์คำตอบสั้น ๆ"></textarea>
+      </section>
+      <section class="survey-step" data-step="2">
+        <div class="section-kicker">03 / 24-HOUR CHALLENGE</div><h1>จัดสรรเวลา 24 ชั่วโมง</h1><p class="muted">ลองแบ่งเวลาในหนึ่งวันของคุณให้ครบ 24 ชั่วโมง</p>
+        <div class="allocation-total"><span>เวลาที่จัดสรรแล้ว</span><strong><b id="hoursTotal">24</b> / 24 ชั่วโมง</strong></div>
+        <div id="allocationControls"></div>
+        <div class="notice" id="allocationNotice">เวลารวมต้องเท่ากับ 24 ชั่วโมงจึงจะส่งคำตอบได้</div>
+        <label class="check-row"><input type="checkbox" id="consent" required><span>ยินยอมให้ใช้คำตอบแบบไม่ระบุตัวตนเพื่อการศึกษาและวิเคราะห์ผลภาพรวม</span></label>
+      </section>
+      <div class="form-actions">
+        <button type="button" class="btn btn-quiet" id="backBtn" hidden>ย้อนกลับ</button>
+        <button type="button" class="btn btn-primary" id="nextBtn">ถัดไป <span>→</span></button>
+        <button type="submit" class="btn btn-primary" id="submitBtn" hidden>ส่งคำตอบ <span>✓</span></button>
+      </div>
+      <p class="error-text" id="errorText" role="alert"></p>
+    </form>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/config.js"></script><script src="../assets/js/participant.js"></script>
+</body>
+</html>
