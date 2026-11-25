@@ -59,3 +59,4 @@ grant usage, select on sequence public.responses_id_seq to anon, authenticated;
 insert into public.admin_users (user_id)
 values ('13d05744-74ae-4131-aa93-e710099c0c54')
 on conflict (user_id) do nothing;
+
